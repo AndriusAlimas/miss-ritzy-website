@@ -1,5 +1,4 @@
-import "./App.css";
-import no_image from "./assets/img/no_image.png";
+import "./categories.styles.scss";
 const App = () => {
   const categories = [
     {
@@ -25,12 +24,12 @@ const App = () => {
   ];
   const SHOP_NOW = "Shop Now";
   return (
-    <div className="categories-categories d-flex justify-content-center">
-      {categories.map(({ title }) => {
+    <div className="categories-container">
+      {categories.map(({ title, id }) => {
         return (
-          <div className="category-container">
-            <img src={no_image} alt="product_image" className="no-image" />
-            <div className="category-container-body">
+          <div key={id} className="category-container">
+            <div className="backround-image" />
+            <div className="category-body-container">
               <h2>{title}</h2>
               <p>{SHOP_NOW}</p>
             </div>
