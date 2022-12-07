@@ -1,13 +1,7 @@
-import CategoryItem from "./components/category-item/category-item.component";
+import CategoriesList from "./components/categories-list/categories-list.component";
 import { categories_list } from "./constants/constants";
 const App = () => {
-  return (
-    <div className="categories-container">
-      {categories_list.map((category) => (
-        <CategoryItem key={category.id} category={category} />
-      ))}
-    </div>
-  );
+  return <CategoriesList categories_list={categories_list} />;
 };
 
 export default App;
