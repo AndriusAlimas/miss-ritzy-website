@@ -10,6 +10,7 @@
       margin: auto 1rem;
     
     .logo{
+        filter: invert(0.5) sepia(1) saturate(206) hue-rotate(281deg);
     width: 7.5rem;
      }
     }
@@ -23,7 +24,9 @@
       margin: 1rem;
       .nav-link {
         cursor: pointer;
-        font-size: 2rem;
+        color:purple;
+        font-size: 1.2rem;
+        margin: 0 1rem;
       }
     }
   }
