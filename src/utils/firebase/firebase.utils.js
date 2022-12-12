@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+} from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -15,16 +20,16 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
-provider.setCustomParameters({
+googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-const auth = getAuth();
+export const auth = getAuth();
 const db = getFirestore();
-const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
-
+const signInWithGooglePopUp = () => signInWithPopup(auth, googleProvider);
+const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 const createUserDocumentFromGoogleAuth = async (userAuth) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
@@ -54,4 +59,10 @@ const createUserDocumentFromGoogleAuth = async (userAuth) => {
 export const logGoogleUser = async () => {
   const { user } = await signInWithGooglePopUp();
   const userDocRef = await createUserDocumentFromGoogleAuth(user);
+  console.log(userDocRef);
+};
+export const logGoogleRedirectUser = async () => {
+  const { user } = await signInWithGoogleRedirect();
+  const userDocRef = await createUserDocumentFromGoogleAuth(user);
+  console.log(userDocRef);
 };
