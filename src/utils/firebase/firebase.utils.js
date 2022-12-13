@@ -30,7 +30,7 @@ export const auth = getAuth();
 const db = getFirestore();
 const signInWithGooglePopUp = () => signInWithPopup(auth, googleProvider);
 const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
-const createUserDocumentFromGoogleAuth = async (userAuth) => {
+export const createUserDocumentFromGoogleAuth = async (userAuth) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
 

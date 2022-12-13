@@ -3,6 +3,7 @@ import { getRedirectResult } from "firebase/auth";
 import {
   logGoogleUser,
   logGoogleRedirectUser,
+  createUserDocumentFromGoogleAuth,
 } from "../../../utils/firebase/firebase.utils";
 import { auth } from "../../../utils/firebase/firebase.utils";
 
@@ -10,7 +11,10 @@ const SignIn = () => {
   useEffect(
     () => async () => {
       const response = await getRedirectResult(auth);
-      console.log(response);
+      if (response) {
+        const userDocRef = createUserDocumentFromGoogleAuth(response.user);
+        console.log(userDocRef);
+      }
     },
     []
   );
