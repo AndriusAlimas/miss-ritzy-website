@@ -30,33 +30,29 @@ const auth = getAuth();
 const db = getFirestore();
 const signInWithGooglePopUp = () => signInWithPopup(auth, googleProvider);
 
-// general user document create and save to db, depending on name second argument if its null that means using native provider
+// general user document create and save to db, depending on additionalInformation second argument if its null that means using native provider
 // so we capture from form field and save the displayName
-const createUserDocument = async (userAuth, name) => {
+const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
   if (!userAuth) return;
-  console.log(userAuth);
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
 
   // if user data does not exist
   // create / set the document with the data from userAuth in my collection
   if (!userSnapshot.exists()) {
-    const { email } = userAuth;
-    // if this native provider we need read display name from form we provide
-    if (!userAuth.displayName) {
-      userAuth.displayName = name;
-    }
+    const { displayName, email } = userAuth;
 
     const createdAt = new Date();
 
     try {
       await setDoc(userDocRef, {
-        displayName: userAuth.displayName,
+        displayName,
         email,
         createdAt,
+        ...additionalInformation,
       });
     } catch (error) {
-      console.log("Error creating the user ", error.message);
+      console.log("Error creating the user ", error);
     }
   }
   // if user data exists
@@ -68,7 +64,7 @@ const createUserDocument = async (userAuth, name) => {
 // this login user with google and create user in db
 export const logGoogleUser = async () => {
   const { user } = await signInWithGooglePopUp();
-  await createUserDocument(user);
+  await createUserDocumentFromAuth(user);
 };
 // Native Provider create with email and password
 export const createAuthUserWithEmailAndPassword = async (
@@ -76,8 +72,13 @@ export const createAuthUserWithEmailAndPassword = async (
   email,
   password
 ) => {
-  if (!email || !password) return;
-  console.log(displayName);
+  if (!email || !password) {
+    alert("Email or Password is missing");
+    return;
+  }
+
   const { user } = await createUserWithEmailAndPassword(auth, email, password);
-  await createUserDocument(user, displayName);
+
+  await createUserDocumentFromAuth(user, { displayName });
+  alert("User " + displayName + " was created!");
 };
