@@ -1,4 +1,10 @@
 export const SHOP_NOW = "Shop Now";
+export const DEFAULT_FORM_FIELDS = {
+  displayName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 export const categories_list = [
   {
     id: 1,
