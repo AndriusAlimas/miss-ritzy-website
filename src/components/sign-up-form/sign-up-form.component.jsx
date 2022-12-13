@@ -5,10 +5,11 @@ const SignUpForm = () => {
   // destructuring:
   const { displayName, email, password, confirmPassword } = formFields;
 
+  console.log(formFields);
   // event handler
   const handleChange = ({ target }) => {
-    const { name } = target;
-    console.log(name);
+    const { name, value } = target;
+    setFormFields({ ...formFields, [name]: value });
   };
   return (
     <div>
@@ -19,15 +20,23 @@ const SignUpForm = () => {
           type="text"
           onChange={handleChange}
           name="displayName"
+          value={displayName}
           required
         />
         <label>Email</label>
-        <input type="email" onChange={handleChange} name="email" required />
+        <input
+          type="email"
+          onChange={handleChange}
+          name="email"
+          value={email}
+          required
+        />
         <label>Password</label>
         <input
           type="password"
           onChange={handleChange}
           name="password"
+          value={password}
           required
         />
         <label>Confirm Password</label>
@@ -35,6 +44,7 @@ const SignUpForm = () => {
           type="password"
           onChange={handleChange}
           name="confirmPassword"
+          value={confirmPassword}
           required
         />
         <button type="submit">Sign Up</button>
