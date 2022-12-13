@@ -6,7 +6,6 @@ const SignUpForm = () => {
   // destructuring:
   const { displayName, email, password, confirmPassword } = formFields;
 
-  console.log(formFields);
   // event handler
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -22,11 +21,16 @@ const SignUpForm = () => {
     }
     try {
       await createAuthUserWithEmailAndPassword(displayName, email, password);
+      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");
       }
     }
+  };
+
+  const resetFormFields = () => {
+    setFormFields(DEFAULT_FORM_FIELDS);
   };
   return (
     <div>
