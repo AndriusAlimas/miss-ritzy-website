@@ -1,5 +1,7 @@
+import { async } from "@firebase/util";
 import { useState } from "react";
 import { DEFAULT_FORM_FIELDS } from "../../constants/constants";
+import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(DEFAULT_FORM_FIELDS);
   // destructuring:
@@ -11,10 +13,22 @@ const SignUpForm = () => {
     const { name, value } = target;
     setFormFields({ ...formFields, [name]: value });
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { password, confirmPassword, displayName } = event.target;
+    if (password.value === confirmPassword.value) {
+      await createAuthUserWithEmailAndPassword(
+        displayName.value,
+        email,
+        password.value
+      );
+    }
+  };
   return (
     <div>
       <h1>Sign Up with your email and password</h1>
-      <form onSubmit={() => {}}>
+      <form onSubmit={handleSubmit}>
         <label>Display Name</label>
         <input
           type="text"

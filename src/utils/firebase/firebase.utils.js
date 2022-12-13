@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -24,19 +29,29 @@ googleProvider.setCustomParameters({
 const auth = getAuth();
 const db = getFirestore();
 const signInWithGooglePopUp = () => signInWithPopup(auth, googleProvider);
-const createUserDocumentFromGoogleAuth = async (userAuth) => {
+
+// general user document create and save to db, depending on name second argument if its null that means using native provider
+// so we capture from form field and save the displayName
+const createUserDocument = async (userAuth, name) => {
+  if (!userAuth) return;
+  console.log(userAuth);
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
 
   // if user data does not exist
   // create / set the document with the data from userAuth in my collection
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
+    const { email } = userAuth;
+    // if this native provider we need read display name from form we provide
+    if (!userAuth.displayName) {
+      userAuth.displayName = name;
+    }
+
     const createdAt = new Date();
 
     try {
       await setDoc(userDocRef, {
-        displayName,
+        displayName: userAuth.displayName,
         email,
         createdAt,
       });
@@ -50,8 +65,19 @@ const createUserDocumentFromGoogleAuth = async (userAuth) => {
   return userDocRef;
 };
 
+// this login user with google and create user in db
 export const logGoogleUser = async () => {
   const { user } = await signInWithGooglePopUp();
-  const userDocRef = await createUserDocumentFromGoogleAuth(user);
-  console.log(userDocRef);
+  await createUserDocument(user);
+};
+// Native Provider create with email and password
+export const createAuthUserWithEmailAndPassword = async (
+  displayName,
+  email,
+  password
+) => {
+  if (!email || !password) return;
+  console.log(displayName);
+  const { user } = await createUserWithEmailAndPassword(auth, email, password);
+  await createUserDocument(user, displayName);
 };
