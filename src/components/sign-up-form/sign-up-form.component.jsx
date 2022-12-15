@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DEFAULT_FORM_FIELDS } from "../../constants/constants";
 import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
+import "./sign-up-form.styles.scss";
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(DEFAULT_FORM_FIELDS);
   // destructuring:
@@ -34,8 +35,9 @@ const SignUpForm = () => {
     setFormFields(DEFAULT_FORM_FIELDS);
   };
   return (
-    <div>
-      <h1>Sign Up with your email and password</h1>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Sign Up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
