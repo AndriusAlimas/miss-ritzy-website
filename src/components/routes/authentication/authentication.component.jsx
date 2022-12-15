@@ -1,7 +1,7 @@
 import { logGoogleUser } from "../../../utils/firebase/firebase.utils";
 import SignUpForm from "../../sign-up-form/sign-up-form.component";
 
-const SignIn = () => {
+const Authentication = () => {
   return (
     <div>
       <h1>Sign In Page</h1>
@@ -11,4 +11,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Authentication;
