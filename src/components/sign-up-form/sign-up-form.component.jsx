@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DEFAULT_FORM_FIELDS } from "../../constants/constants";
 import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import "./sign-up-form.styles.scss";
 const SignUpForm = () => {
@@ -80,7 +81,7 @@ const SignUpForm = () => {
             required: true,
           }}
         />
-        <button type="submit">Sign Up</button>
+        <Button buttonOptions={{ type: "submit" }}>Sign Up</Button>
       </form>
     </div>
   );

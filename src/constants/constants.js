@@ -32,3 +32,8 @@ export const categories_list = [
     imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
   },
 ];
+
+export const BUTTON_TYPES_CLASSES = {
+  google: "google-sign-in",
+  inverted: "inverted",
+};
