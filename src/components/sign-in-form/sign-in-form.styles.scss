@@ -1,0 +1,13 @@
+.sign-up-container{
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+
+    h2{
+        margin: 1.4rem 0;
+    }
+    .buttons-container{
+        display:flex;
+        justify-content: space-between;
+    }
+}
