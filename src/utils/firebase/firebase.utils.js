@@ -29,7 +29,7 @@ googleProvider.setCustomParameters({
 
 const auth = getAuth();
 const db = getFirestore();
-const signInWithGooglePopUp = () => signInWithPopup(auth, googleProvider);
+const signInWithGooglePopUp = async ()   =>await signInWithPopup(auth, googleProvider);
 
 // general user document create and save to db, depending on additionalInformation second argument if its null that means using native provider
 // so we capture from form field and save the displayName
@@ -64,8 +64,14 @@ const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
 
 // this login user with google and create user in db
 export const signInWithGoogle = async () => {
-  const { user } = await signInWithGooglePopUp();
-  await createUserDocumentFromAuth(user);
+  try{
+  const  {user}  = await signInWithGooglePopUp();
+
+  return  await createUserDocumentFromAuth(user);
+
+  }catch(error){
+    console.log(error);
+  }
 };
 // Native Provider create with email and password
 export const createAuthUserWithEmailAndPassword = async (

@@ -1,11 +1,22 @@
 .sign-up-container{
-    display: flex;
-    flex-direction: column;
-    width: 24rem;
-
+ 
+    // flex-direction: column;
+  
+    width: 44rem;
+   
     h2{
-        margin: 1.4rem 0;
+        margin: 2.4rem 0;
     }
+    @media screen and (max-width: 1000px) {
+        margin: 1.5rem;
+        width: -webkit-fill-available;
+     }
+     @media screen and (min-width: 2000px) {
+        width:60rem;
+      }
+      @media screen and (min-width: 3100px) {
+        width:40vw;
+      }
     .buttons-container{
         display:flex;
         justify-content: space-between;

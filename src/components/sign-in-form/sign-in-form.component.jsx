@@ -23,7 +23,6 @@ const SignInForm = () => {
     try {
       const response = await signInAuthUserWithEmailAndPassword(email,password);
     } catch (error) {
-
       switch(error.code){
         case "auth/wrong-password":
            alert("Incorrect password for email");
@@ -67,7 +66,7 @@ const SignInForm = () => {
         />
         <div className="buttons-container">
           <Button buttonOptions={{ type: "submit" }}>Sign In</Button>
-          <Button buttonType="google" buttonOptions={{ onClick: signInWithGoogle}}  >Google Sign In</Button>
+          <Button buttonType="google" buttonOptions={{ onClick: signInWithGoogle, type: "button"}}  >Google Sign In</Button>
         </div>
       </form>
     </div>
