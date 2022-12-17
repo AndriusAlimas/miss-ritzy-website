@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { DEFAULT_FORM_FIELDS } from "../../constants/constants";
-import { signInWithGoogle,signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+import {
+  signInWithGoogle,
+  signInAuthUserWithEmailAndPassword,
+} from "../../utils/firebase/firebase.utils";
+
+import { UserContext } from "../../contexts/user.context";
 // Custom Components
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
@@ -8,6 +13,7 @@ import FormInput from "../form-input/form-input.component";
 import "./sign-in-form.styles.scss";
 
 const SignInForm = () => {
+  const { setCurrentUser } = useContext(UserContext);
   const [formFields, setFormFields] = useState(DEFAULT_FORM_FIELDS);
   // destructuring:
   const { email, password } = formFields;
@@ -21,16 +27,21 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(email,password);
+      const { user } = await signInAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      setCurrentUser(user);
     } catch (error) {
-      switch(error.code){
+      switch (error.code) {
         case "auth/wrong-password":
-           alert("Incorrect password for email");
-        break;
+          alert("Incorrect password for email");
+          break;
         case "auth/user-not-found":
           alert("No user associated with this email");
-        break;
-        default: 
+          break;
+        default:
           console.log("Error ", error.code);
       }
     }
@@ -66,7 +77,12 @@ const SignInForm = () => {
         />
         <div className="buttons-container">
           <Button buttonOptions={{ type: "submit" }}>Sign In</Button>
-          <Button buttonType="google" buttonOptions={{ onClick: signInWithGoogle, type: "button"}}  >Google Sign In</Button>
+          <Button
+            buttonType="google"
+            buttonOptions={{ onClick: signInWithGoogle, type: "button" }}
+          >
+            Google Sign In
+          </Button>
         </div>
       </form>
     </div>
