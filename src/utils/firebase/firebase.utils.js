@@ -4,7 +4,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -29,7 +29,8 @@ googleProvider.setCustomParameters({
 
 const auth = getAuth();
 const db = getFirestore();
-const signInWithGooglePopUp = async ()   =>await signInWithPopup(auth, googleProvider);
+const signInWithGooglePopUp = async () =>
+  await signInWithPopup(auth, googleProvider);
 
 // general user document create and save to db, depending on additionalInformation second argument if its null that means using native provider
 // so we capture from form field and save the displayName
@@ -56,20 +57,17 @@ const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
       console.log("Error creating the user ", error);
     }
   }
-  // if user data exists
 
-  // return userDocRef
   return userDocRef;
 };
 
 // this login user with google and create user in db
 export const signInWithGoogle = async () => {
-  try{
-  const  {user}  = await signInWithGooglePopUp();
+  try {
+    const { user } = await signInWithGooglePopUp();
 
-  return  await createUserDocumentFromAuth(user);
-
-  }catch(error){
+    return await createUserDocumentFromAuth(user);
+  } catch (error) {
     console.log(error);
   }
 };
@@ -79,16 +77,16 @@ export const createAuthUserWithEmailAndPassword = async (
   email,
   password
 ) => {
-  if (!email || !password)  return;
-  
+  if (!email || !password) return;
 
   const { user } = await createUserWithEmailAndPassword(auth, email, password);
 
-  await createUserDocumentFromAuth(user, { displayName });
   alert("User " + displayName + " was created!");
+  await createUserDocumentFromAuth(user, { displayName });
+  return user;
 };
 
-export const signInAuthUserWithEmailAndPassword = async (email, password) =>{
-  if(!email || !password) return;
-  return await signInWithEmailAndPassword(auth,email,password);
-}
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await signInWithEmailAndPassword(auth, email, password);
+};

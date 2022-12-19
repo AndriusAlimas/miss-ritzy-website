@@ -1,23 +1,23 @@
 import { useState, useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
+
+import Button from "../button/button.component";
+import FormInput from "../form-input/form-input.component";
+
 import { DEFAULT_FORM_FIELDS } from "../../constants/constants";
+import { resetFormFields } from "../../utils/forms/forms.utils";
 import {
   signInWithGoogle,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
-import { UserContext } from "../../contexts/user.context";
-// Custom Components
-import Button from "../button/button.component";
-import FormInput from "../form-input/form-input.component";
-// Styles
 import "./sign-in-form.styles.scss";
 
 const SignInForm = () => {
   const { setCurrentUser } = useContext(UserContext);
   const [formFields, setFormFields] = useState(DEFAULT_FORM_FIELDS);
-  // destructuring:
   const { email, password } = formFields;
-  // event handler
+
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setFormFields({ ...formFields, [name]: value });
@@ -31,8 +31,8 @@ const SignInForm = () => {
         email,
         password
       );
-
       setCurrentUser(user);
+      resetFormFields(setFormFields);
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
@@ -45,10 +45,6 @@ const SignInForm = () => {
           console.log("Error ", error.code);
       }
     }
-  };
-
-  const resetFormFields = () => {
-    setFormFields(DEFAULT_FORM_FIELDS);
   };
   return (
     <div className="sign-up-container">

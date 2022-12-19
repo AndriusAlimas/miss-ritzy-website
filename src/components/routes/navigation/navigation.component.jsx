@@ -5,7 +5,7 @@ import { UserContext } from "../../../contexts/user.context";
 import "./navigation.styles.scss";
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
+
   return (
     <>
       <div className="navigation">
@@ -14,11 +14,15 @@ const Navigation = () => {
         </Link>
         <div className="nav-links-container">
           <Link className="nav-link" to={"/shop"}>
-            Shop
+            SHOP
           </Link>
-          <Link className="nav-link" to={"/auth"}>
-            Sign In
-          </Link>
+          {currentUser ? (
+            <span className="nav-link">SIGN OUT</span>
+          ) : (
+            <Link className="nav-link" to={"/auth"}>
+              SIGN IN
+            </Link>
+          )}
         </div>
       </div>
       <Outlet />
