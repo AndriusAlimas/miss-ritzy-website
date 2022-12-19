@@ -75,7 +75,13 @@ const SignInForm = () => {
           <Button buttonOptions={{ type: "submit" }}>Sign In</Button>
           <Button
             buttonType="google"
-            buttonOptions={{ onClick: signInWithGoogle, type: "button" }}
+            buttonOptions={{
+              onClick: async () => {
+                const user = await signInWithGoogle();
+                if (user !== null) setCurrentUser(user);
+              },
+              type: "button",
+            }}
           >
             Google Sign In
           </Button>
