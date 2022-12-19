@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { useState } from "react";
 
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
@@ -14,7 +13,6 @@ import {
 import "./sign-in-form.styles.scss";
 
 const SignInForm = () => {
-  const { setCurrentUser } = useContext(UserContext);
   const [formFields, setFormFields] = useState(DEFAULT_FORM_FIELDS);
   const { email, password } = formFields;
 
@@ -27,11 +25,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      setCurrentUser(user);
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields(setFormFields);
     } catch (error) {
       switch (error.code) {
@@ -75,13 +69,7 @@ const SignInForm = () => {
           <Button buttonOptions={{ type: "submit" }}>Sign In</Button>
           <Button
             buttonType="google"
-            buttonOptions={{
-              onClick: async () => {
-                const user = await signInWithGoogle();
-                if (user !== null) setCurrentUser(user);
-              },
-              type: "button",
-            }}
+            buttonOptions={{ onClick: signInWithGoogle, type: "button" }}
           >
             Google Sign In
           </Button>

@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -35,7 +36,10 @@ const signInWithGooglePopUp = async () =>
 
 // general user document create and save to db, depending on additionalInformation second argument if its null that means using native provider
 // so we capture from form field and save the displayName
-const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation
+) => {
   if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
@@ -64,14 +68,7 @@ const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
 
 // this login user with google and create user in db
 export const signInWithGoogle = async () => {
-  try {
-    const { user } = await signInWithGooglePopUp();
-    await createUserDocumentFromAuth(user);
-    console.log(user);
-    return user;
-  } catch (error) {
-    console.log(error);
-  }
+  await signInWithGooglePopUp();
 };
 // Native Provider create with email and password
 export const createAuthUserWithEmailAndPassword = async (
@@ -94,3 +91,6 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
