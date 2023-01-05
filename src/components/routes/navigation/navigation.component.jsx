@@ -3,20 +3,21 @@ import { useContext } from "react";
 
 import { ReactComponent as Logo } from "../../../assets/svg/Logo.svg";
 import { UserContext } from "../../../contexts/user.context";
+import { signOutUser } from "../../../utils/firebase/firebase.utils";
 
 import "./navigation.styles.scss";
-import { signOutUser } from "../../../utils/firebase/firebase.utils";
+
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
 
   return (
     <>
       <div className="navigation">
-        <Link className="logo-container" to={"/"}>
+        <Link className="logo-container" to="/">
           <Logo className="logo" />
         </Link>
         <div className="nav-links-container">
-          <Link className="nav-link" to={"/shop"}>
+          <Link className="nav-link" to="/shop">
             SHOP
           </Link>
           {currentUser ? (
@@ -24,7 +25,7 @@ const Navigation = () => {
               SIGN OUT
             </span>
           ) : (
-            <Link className="nav-link" to={"/auth"}>
+            <Link className="nav-link" to="/auth">
               SIGN IN
             </Link>
           )}
