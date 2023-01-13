@@ -5,6 +5,8 @@ import { ReactComponent as Logo } from "../../../assets/svg/Logo.svg";
 import { UserContext } from "../../../contexts/user.context";
 import { signOutUser } from "../../../utils/firebase/firebase.utils";
 
+import CartIcon from "../../cart-icon/cart-icon.component";
+
 import "./navigation.styles.scss";
 
 const Navigation = () => {
@@ -29,6 +31,7 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
       </div>
       <Outlet />
