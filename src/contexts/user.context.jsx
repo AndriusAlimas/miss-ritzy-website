@@ -1,4 +1,7 @@
+// React
 import { createContext, useState, useEffect } from "react";
+
+// Firebase
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
@@ -21,7 +24,7 @@ export const UserProvider = ({ children }) => {
       setCurrentUser(user);
     });
 
-    return unsubscribe;
+    return unsubscribe; // cleanup
   }, []);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -5,12 +5,11 @@
     }
 
     @media screen and (max-width: 1000px) {
-        margin: 1.5rem;
-        width: -webkit-fill-available;
+       width: 90vw;
      }
      @media screen and (min-width: 1000px) {
-      width: 29vw;
-      margin: 1.2rem 2.5rem;
+      width: 34vw;
+      margin: 1.2rem auto;
      }
      @media screen and (min-width: 1500px) {
         width:40vw;
