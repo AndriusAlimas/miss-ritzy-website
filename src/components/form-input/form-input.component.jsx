@@ -1,4 +1,6 @@
+// Styles:
 import "./form-input.styles.scss";
+
 const FormInput = ({ label, inputOptions }) => {
   return (
     <div className="group">

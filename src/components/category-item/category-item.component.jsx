@@ -1,5 +1,8 @@
-import "./category-item.styles.scss";
+// Constants:
 import { SHOP_NOW } from "../../constants/constants";
+// Styles:
+import "./category-item.styles.scss";
+
 const CategoryItem = ({ category }) => {
   const { title, imageUrl } = category;
   return (

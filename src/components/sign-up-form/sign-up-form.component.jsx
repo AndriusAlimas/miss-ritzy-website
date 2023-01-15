@@ -1,12 +1,14 @@
+// React:
 import { useState } from "react";
-
+// Constants:
+import { DEFAULT_FORM_FIELDS } from "../../constants/constants";
+// Components:
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
-
-import { DEFAULT_FORM_FIELDS } from "../../constants/constants";
+// Utils:
 import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import { resetFormFields } from "../../utils/forms/forms.utils";
-
+// Styles:
 import "./sign-up-form.styles.scss";
 
 const SignUpForm = () => {

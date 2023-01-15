@@ -1,4 +1,6 @@
+// Components:
 import CategoryItem from "../category-item/category-item.component";
+// Styles:
 import "./categories-list.styles.scss";
 const CategoriesList = ({ categories_list }) => (
   <div className="categories-container">
@@ -7,5 +9,4 @@ const CategoriesList = ({ categories_list }) => (
     ))}
   </div>
 );
-
 export default CategoriesList;

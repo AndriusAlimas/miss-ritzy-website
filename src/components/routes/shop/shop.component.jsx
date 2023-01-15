@@ -1,7 +1,11 @@
+// Context:
 import { useContext } from "react";
 import { ProductsContext } from "../../../contexts/product.context";
+// Components:
 import ProductCard from "../../product-card/product-card.component";
+// Styles:
 import "./shop.styles.scss";
+
 const Shop = () => {
   const { products } = useContext(ProductsContext);
   return (
@@ -12,5 +16,4 @@ const Shop = () => {
     </div>
   );
 };
-
 export default Shop;
