@@ -18,7 +18,13 @@ const CartDropdown = () => {
           <CartItem key={item.id} cartItem={item} />
         ))}
       </div>
-      <Button>GO TO CHECKOUT</Button>
+      <Button
+        buttonOptions={{
+          onClick: () => console.log("clicked"),
+        }}
+      >
+        GO TO CHECKOUT
+      </Button>
     </div>
   );
 };
