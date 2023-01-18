@@ -14,7 +14,7 @@ import "./cart-dropdown.styles.scss";
 const CartDropdown = () => {
   const navigate = useNavigate();
   const { cartItems } = useContext(CartContext);
-  const goToCheckoutPage = () => navigate("/checkout", { state: { cartItems: cartItems} });
+  const goToCheckoutPage = () => navigate("/checkout");
   return (
     <div className="cart-dropdown-container">
       <div className="cart-items">

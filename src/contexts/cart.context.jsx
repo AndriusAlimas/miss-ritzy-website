@@ -1,19 +1,35 @@
 import { createContext, useEffect, useState } from "react";
 
-const addCartItem = (cartItems, productToAdd) => {
+const addCartItem = (cartItems, productToAdd, subtract) => {
+  let quantity = 1;
+  if (subtract === undefined) {
+    subtract = false;
+  } else {
+    quantity = -1;
+  }
+  // subtract = subtract === undefined && false;
+  console.log(subtract);
   // find if carItems contains productToAdd
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
   );
-
+  if (existingCartItem && existingCartItem.quantity + quantity <= 0) {
+    return cartItems.filter((item) => item.id !== existingCartItem.id);
+  }
   // if found, increament quantity
   if (existingCartItem) {
-    return cartItems.map((cartItem) =>
-      cartItem.id === productToAdd.id
-        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-        : cartItem
-    );
+    return cartItems.map((cartItem) => {
+      return cartItem.id === productToAdd.id
+        ? // ? existingCartItem.quantity + quantity <= 0 && // console.log(
+          //   (cartItem = cartItems.filter(
+          //     (item) => item.id !== existingCartItem.id
+          //   ))
+          // ),
+          { ...cartItem, quantity: cartItem.quantity + quantity }
+        : cartItem;
+    });
   }
+
   // return new array with modified cartItems/ new cart items
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
@@ -38,8 +54,9 @@ export const CartProvider = ({ children }) => {
     );
     setCartCount(newCartCount);
   }, [cartItems]);
-  const addItemToCart = (productToAdd) => {
-    setCartItems(addCartItem(cartItems, productToAdd));
+  const addItemToCart = (productToAdd, subtract) => {
+    setCartItems(addCartItem(cartItems, productToAdd, subtract));
+    console.log(cartItems);
   };
 
   const value = {
