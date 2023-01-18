@@ -1,4 +1,7 @@
 export const SHOP_NOW = "Shop Now";
+export const PRODUCT_HEADERS = {
+  PRODUCT:"product"
+}
 export const DEFAULT_FORM_FIELDS = {
   displayName: "",
   email: "",

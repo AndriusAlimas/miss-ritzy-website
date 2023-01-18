@@ -1,5 +1,5 @@
 // Constants:
-import { SHOP_NOW } from "../../constants/constants";
+import { SHOP_NOW } from "../../utils/constants/constants";
 // Styles:
 import "./category-item.styles.scss";
 

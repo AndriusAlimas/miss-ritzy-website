@@ -1,5 +1,5 @@
 // Constants:
-import { BUTTON_TYPES_CLASSES } from "../../constants/constants";
+import { BUTTON_TYPES_CLASSES } from "../../utils/constants/constants";
 // Styles:
 import "./button.styles.scss";
 const Button = ({ children, buttonType, buttonOptions }) => {

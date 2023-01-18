@@ -1,14 +1,34 @@
+// React:
 import { useContext } from "react";
-
+// Contexts:
 import { CartContext } from "../../../contexts/cart.context";
+// Constants:
+
+// Styles:
 import "./checkout.styles.scss";
+
 const Checkout = () => {
   const { removeItemToCart,addItemToCart, cartItems } = useContext(CartContext);
 
   return (
-    <div>
-      <h1>Checkout Page</h1>
-
+    <div className="checkout-container">
+      <div className="checkout-header">
+        <div className="header-block">
+            <span>Product</span>
+        </div>
+        <div className="header-block">
+            <span>Product</span>
+        </div>
+        <div className="header-block">
+            <span>Product</span>
+        </div>
+        <div className="header-block">
+            <span>Product</span>
+        </div>
+        <div className="header-block">
+            <span>Product</span> 
+        </div>
+      </div>
       <table>
         <thead>
           <tr>
