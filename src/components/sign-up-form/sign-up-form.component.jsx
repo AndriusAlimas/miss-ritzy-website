@@ -1,7 +1,7 @@
 // React:
 import { useState } from "react";
 // Constants:
-import { DEFAULT_FORM_FIELDS } from "../../constants/constants";
+import { DEFAULT_FORM_FIELDS } from "../../utils/constants/constants";
 // Components:
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
