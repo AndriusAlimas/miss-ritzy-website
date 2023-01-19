@@ -6,6 +6,11 @@ export const PRODUCT_HEADERS = {
   PRICE: "Price",
   REMOVE: "Remove",
 };
+export const ENTITY_ICONS = {
+  LEFT_ARROW: String.fromCharCode(`10096`),
+  RIGHT_ARROW: String.fromCharCode(`10095`),
+  REMOVE: String.fromCharCode("10005"),
+};
 export const DEFAULT_FORM_FIELDS = {
   displayName: "",
   email: "",
