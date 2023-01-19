@@ -58,10 +58,10 @@ export const CartProvider = ({ children }) => {
   const addItemToCart = (product) => {
     setCartItems(addOrRemoveCartItem(cartItems, product, "add"));
   };
-  const removeItemToCart = (product) => {
+  const removeItemFromCart = (product) => {
     setCartItems(addOrRemoveCartItem(cartItems, product, "remove"));
   };
-  const removeItemsToCart = (product) => {
+  const clearItemFromCart = (product) => {
     setCartItems(addOrRemoveCartItem(cartItems, product, "remove", true));
   };
 
@@ -70,8 +70,8 @@ export const CartProvider = ({ children }) => {
     setIsCartOpen,
     cartItems,
     addItemToCart,
-    removeItemToCart,
-    removeItemsToCart,
+    removeItemFromCart,
+    clearItemFromCart,
     cartCount,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

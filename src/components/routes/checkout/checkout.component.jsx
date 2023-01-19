@@ -10,8 +10,7 @@ import "./checkout.styles.scss";
 
 const Checkout = () => {
   const { PRODUCT, DESCRIPTION, QUANTITY, PRICE, REMOVE } = PRODUCT_HEADERS;
-  const { removeItemToCart, addItemToCart, cartItems } =
-    useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   return (
     <div className="checkout-container">
