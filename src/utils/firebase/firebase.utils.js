@@ -8,7 +8,16 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -31,6 +40,33 @@ googleProvider.setCustomParameters({
 
 const auth = getAuth();
 const db = getFirestore();
+
+// we can add any collection structure with documents objects to our firebase
+// usually we will use this once to initialize automatically if we need data!!
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  documentToAdd,
+  field
+) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  documentToAdd.forEach((documentObject) => {
+    const docRef = doc(collectionRef, documentObject[field].toLowerCase());
+    batch.set(docRef, documentObject);
+  });
+
+  await batch.commit();
+  console.log("Done");
+};
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+
+  // const querySnapshot =
+};
+
 const signInWithGooglePopUp = async () =>
   await signInWithPopup(auth, googleProvider);
 
