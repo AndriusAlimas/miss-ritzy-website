@@ -5,11 +5,11 @@ import {
   getCategoriesAndDocuments,
 } from "../utils/firebase/firebase.utils.js";
 // as the actual value you want to access
-export const ProductsContext = createContext({
-  products: [],
+export const CategoriesContext = createContext({
+  categoriesMap: {},
 });
 
-export const ProductsProvider = ({ children }) => {
+export const CategoriesProvider = ({ children }) => {
   // useEffect(() => {
   //   addCollectionAndDocuments("categories", PRODUCTS, "title");
   // }, []);
@@ -22,11 +22,11 @@ export const ProductsProvider = ({ children }) => {
     getCategoriesMap();
   }, []);
 
-  const [products, setProducts] = useState([]);
-  const value = { products };
+  const [categoriesMap, setCategoriesMap] = useState({});
+  const value = { categoriesMap };
   return (
-    <ProductsContext.Provider value={value}>
+    <CategoriesContext.Provider value={value}>
       {children}
-    </ProductsContext.Provider>
+    </CategoriesContext.Provider>
   );
 };

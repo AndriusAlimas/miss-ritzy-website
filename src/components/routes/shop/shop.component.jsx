@@ -1,18 +1,18 @@
 // Context:
 import { useContext } from "react";
-import { ProductsContext } from "../../../contexts/product.context";
+import { CategoriesContext } from "../../../contexts/categories.context";
 // Components:
 import ProductCard from "../../product-card/product-card.component";
 // Styles:
 import "./shop.styles.scss";
 
 const Shop = () => {
-  const { products } = useContext(ProductsContext);
+  const {} = useContext(CategoriesContext);
   return (
     <div className="products-container">
-      {products.map((product) => (
+      {/* {products.map((product) => (
         <ProductCard key={product.id} product={product} />
-      ))}
+      ))} */}
     </div>
   );
 };
