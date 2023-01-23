@@ -1,4 +1,6 @@
 export const SHOP_NOW = "Shop Now";
+export const SIGN_IN = "SIGN IN";
+export const SIGN_OUT = "SIGN OUT";
 export const PRODUCT_HEADERS = {
   PRODUCT: "Product",
   DESCRIPTION: "Description",
