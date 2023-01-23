@@ -1,12 +1,12 @@
 // Components:
 import CategoryItem from "../category-item/category-item.component";
 // Styles:
-import "./categories-list.styles.scss";
+import { CategoriesContainer } from "./categories-list.styles";
 const CategoriesList = ({ categories_list }) => (
-  <div className="categories-container">
+  <CategoriesContainer>
     {categories_list.map((category) => (
       <CategoryItem key={category.id} category={category} />
     ))}
-  </div>
+  </CategoriesContainer>
 );
 export default CategoriesList;
