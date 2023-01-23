@@ -1,7 +1,10 @@
 // React:
 import { useState } from "react";
 // Constants:
-import { DEFAULT_FORM_FIELDS } from "../../utils/constants/constants.js";
+import {
+  BUTTON_TYPE_CLASSES,
+  DEFAULT_FORM_FIELDS,
+} from "../../utils/constants/constants.js";
 // Components:
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
@@ -70,7 +73,7 @@ const SignInForm = () => {
         <div className="buttons-container">
           <Button buttonOptions={{ type: "submit" }}>Sign In</Button>
           <Button
-            buttonType="google"
+            buttonType={BUTTON_TYPE_CLASSES.google}
             buttonOptions={{ onClick: signInWithGoogle, type: "button" }}
           >
             Google Sign In

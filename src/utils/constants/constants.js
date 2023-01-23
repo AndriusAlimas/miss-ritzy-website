@@ -1,6 +1,7 @@
 export const SHOP_NOW = "Shop Now";
 export const SIGN_IN = "SIGN IN";
 export const SIGN_OUT = "SIGN OUT";
+export const ADD_TO_CART = "Add to cart";
 export const PRODUCT_HEADERS = {
   PRODUCT: "Product",
   DESCRIPTION: "Description",
@@ -47,7 +48,8 @@ export const categories_list = [
   },
 ];
 
-export const BUTTON_TYPES_CLASSES = {
+export const BUTTON_TYPE_CLASSES = {
+  base: "base",
   google: "google-sign-in",
   inverted: "inverted",
 };
