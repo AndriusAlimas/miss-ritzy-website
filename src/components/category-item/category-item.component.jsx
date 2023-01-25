@@ -12,7 +12,7 @@ const CategoryItem = ({ category }) => {
     <CategoryItemContainer>
       <BackgroundImage imageUrl={imageUrl} />
       <Body>
-        <h2>{title.toUpperCase()}</h2>
+        <h2>{title}</h2>
         <p>{SHOP_NOW}</p>
       </Body>
     </CategoryItemContainer>
