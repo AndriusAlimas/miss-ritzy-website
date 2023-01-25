@@ -1,7 +1,11 @@
 // React:
 import { useState } from "react";
 // Constants:
-import { DEFAULT_FORM_FIELDS } from "../../utils/constants/constants";
+import {
+  BUTTONS_LABELS,
+  DEFAULT_FORM_FIELDS,
+  SIGN_FORM_LABELS,
+} from "../../utils/constants/constants";
 // Components:
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
@@ -13,6 +17,7 @@ import { resetFormFields } from "../../utils/forms/forms.utils";
 import { SignUpContainer } from "./sign-up-form.styles";
 
 const SignUpForm = () => {
+  const { HAVE_ACCOUNT, DONT_HAVE_ACCOUNT } = SIGN_FORM_LABELS;
   const [formFields, setFormFields] = useState(DEFAULT_FORM_FIELDS);
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -41,8 +46,8 @@ const SignUpForm = () => {
 
   return (
     <SignUpContainer>
-      <h2>Don't have an account?</h2>
-      <span>Sign Up with your email and password</span>
+      <h2>{HAVE_ACCOUNT}</h2>
+      <span>{DONT_HAVE_ACCOUNT}</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
@@ -85,7 +90,9 @@ const SignUpForm = () => {
             required: true,
           }}
         />
-        <Button buttonOptions={{ type: "submit" }}>Sign Up</Button>
+        <Button buttonOptions={{ type: "submit" }}>
+          {BUTTONS_LABELS.SIGN_UP}
+        </Button>
       </form>
     </SignUpContainer>
   );

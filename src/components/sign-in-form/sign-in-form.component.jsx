@@ -5,7 +5,7 @@ import {
   BUTTONS_LABELS,
   BUTTON_TYPE_CLASSES,
   DEFAULT_FORM_FIELDS,
-  SIGN_IN_FORM_LABELS,
+  SIGN_FORM_LABELS,
 } from "../../utils/constants/constants.js";
 // Components:
 import Button from "../button/button.component";
@@ -20,7 +20,7 @@ import {
 import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles.js";
 
 const SignInForm = () => {
-  const { HAVE_ACCOUNT, DONT_HAVE_ACCOUNT } = SIGN_IN_FORM_LABELS;
+  const { HAVE_ACCOUNT, DONT_HAVE_ACCOUNT } = SIGN_FORM_LABELS;
   const [formFields, setFormFields] = useState(DEFAULT_FORM_FIELDS);
   const { email, password } = formFields;
 
