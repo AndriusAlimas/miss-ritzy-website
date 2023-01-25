@@ -9,14 +9,13 @@ import {
 } from "../../utils/constants/constants";
 // Components
 import Button from "../button/button.component";
+// Styles
 import {
   Footer,
   Name,
   Price,
   ProductCardContainer,
 } from "./product-card.styles";
-// Styles
-
 const ProductCard = ({ product }) => {
   const { imageUrl, name, price } = product;
   const { addItemToCart } = useContext(CartContext);
