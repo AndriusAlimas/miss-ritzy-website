@@ -1,6 +1,5 @@
 import CategoriesList from "../../categories-list/categories-list.component";
-import { categories_list } from "../../../utils/constants/constants";
 
-const Home = () => <CategoriesList categories_list={categories_list} />;
+const Home = () => <CategoriesList />;
 
 export default Home;

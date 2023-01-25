@@ -1,10 +1,13 @@
 // Components:
 import CategoryItem from "../category-item/category-item.component";
+// Constants:
+import { CATEGORIES_LIST } from "../../utils/constants/constants";
+
 // Styles:
 import { CategoriesContainer } from "./categories-list.styles";
-const CategoriesList = ({ categories_list }) => (
+const CategoriesList = () => (
   <CategoriesContainer>
-    {categories_list.map((category) => (
+    {CATEGORIES_LIST.map((category) => (
       <CategoryItem key={category.id} category={category} />
     ))}
   </CategoriesContainer>

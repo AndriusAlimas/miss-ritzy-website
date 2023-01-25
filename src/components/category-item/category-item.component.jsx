@@ -1,3 +1,5 @@
+// React:
+import { useNavigate } from "react-router-dom";
 // Constants:
 import { SHOP_NOW } from "../../utils/constants/constants";
 // Styles:
@@ -7,9 +9,12 @@ import {
   Body,
 } from "./category-item.styles";
 const CategoryItem = ({ category }) => {
-  const { title, imageUrl } = category;
+  const { title, imageUrl, route } = category;
+  const navigate = useNavigate();
+
+  const onNavigateHandler = () => navigate(route);
   return (
-    <CategoryItemContainer>
+    <CategoryItemContainer onClick={onNavigateHandler}>
       <BackgroundImage imageUrl={imageUrl} />
       <Body>
         <h2>{title}</h2>
