@@ -2,8 +2,10 @@
 import { useState } from "react";
 // Constants:
 import {
+  BUTTONS_LABELS,
   BUTTON_TYPE_CLASSES,
   DEFAULT_FORM_FIELDS,
+  SIGN_IN_FORM_LABELS,
 } from "../../utils/constants/constants.js";
 // Components:
 import Button from "../button/button.component";
@@ -18,6 +20,7 @@ import {
 import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles.js";
 
 const SignInForm = () => {
+  const { HAVE_ACCOUNT, DONT_HAVE_ACCOUNT } = SIGN_IN_FORM_LABELS;
   const [formFields, setFormFields] = useState(DEFAULT_FORM_FIELDS);
   const { email, password } = formFields;
 
@@ -47,8 +50,8 @@ const SignInForm = () => {
   };
   return (
     <SignInContainer>
-      <h2>Already have an account?</h2>
-      <span>Sign in with your email and password</span>
+      <h2>{HAVE_ACCOUNT}</h2>
+      <span>{DONT_HAVE_ACCOUNT}</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Email"
@@ -76,7 +79,7 @@ const SignInForm = () => {
             buttonType={BUTTON_TYPE_CLASSES.google}
             buttonOptions={{ onClick: signInWithGoogle, type: "button" }}
           >
-            Google Sign In
+            {BUTTONS_LABELS.GOOGLE}
           </Button>
         </ButtonsContainer>
       </form>
