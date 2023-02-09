@@ -28,6 +28,9 @@ export const DEFAULT_FORM_FIELDS = {
   password: "",
   confirmPassword: "",
 };
+export const USER_ACTION_TYPES = {
+  SET_CURRENT_USER: "SET_CURRENT_USER",
+};
 export const CATEGORIES_LIST = [
   {
     id: 1,
