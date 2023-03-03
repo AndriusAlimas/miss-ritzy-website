@@ -4,7 +4,7 @@ import { createContext, useReducer } from "react";
 import { addOrRemoveCartItem } from "../utils/cartUpdateHelper";
 import { createAction } from "../utils/reducer/reducer.util";
 // Import constants:
-import { USER_ACTION_TYPES } from "../utils/constants/constants";
+import USER_ACTION_TYPES from "../store/user/user.types";
 const { SET_CART_ITEMS, SET_IS_CART_OPEN } = USER_ACTION_TYPES;
 
 // INITIAL STATE FOR THE REDUCER:
