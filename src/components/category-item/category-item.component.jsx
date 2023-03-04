@@ -9,13 +9,13 @@ import {
   Body,
 } from "./category-item.styles";
 const CategoryItem = ({ category }) => {
-  const { title, imageUrl, route } = category;
+  const { title, categoryImage, route } = category;
   const navigate = useNavigate();
 
   const onNavigateHandler = () => navigate(route);
   return (
     <CategoryItemContainer onClick={onNavigateHandler}>
-      <BackgroundImage imageUrl={imageUrl} />
+      <BackgroundImage imageUrl={categoryImage} />
       <Body>
         <h2>{title}</h2>
         <p>{SHOP_NOW}</p>

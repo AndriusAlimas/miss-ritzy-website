@@ -67,10 +67,24 @@ export const getCategoriesAndDocuments = async () => {
   const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     const { title, items } = docSnapshot.data();
     acc[title.toLowerCase()] = items;
+    // console.log(acc);
     return acc;
   }, {});
 
   return categoryMap;
+};
+export const getCategories = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const categoriesList = querySnapshot.docs.map((item) => {
+    const { title, categoryImage, route } = item.data();
+
+    return { title, categoryImage, route };
+  }, {});
+
+  return categoriesList;
 };
 
 const signInWithGooglePopUp = async () =>
