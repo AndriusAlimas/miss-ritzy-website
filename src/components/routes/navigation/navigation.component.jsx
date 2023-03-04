@@ -6,7 +6,6 @@ import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // Contexts
-import { UserContext } from "../../../contexts/user.context";
 import { CartContext } from "../../../contexts/cart.context";
 
 // Constants:
@@ -30,7 +29,6 @@ import {
 import { selectCurrentUser } from "../../../store/user/user.selector";
 
 const Navigation = () => {
-  // const { currentUser } = useContext(UserContext);
   const currentUser = useSelector(selectCurrentUser);
   const { isCartOpen } = useContext(CartContext);
   return (
