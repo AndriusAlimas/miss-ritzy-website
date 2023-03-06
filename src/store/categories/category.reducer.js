@@ -1,4 +1,4 @@
-import { CATEGORIES_ACTION_TYPES } from "./category.types";
+import CATEGORIES_ACTION_TYPES from "./category.types";
 const { SET_CATEGORIES_MAP } = CATEGORIES_ACTION_TYPES;
 
 // Initial State for Reducer:
