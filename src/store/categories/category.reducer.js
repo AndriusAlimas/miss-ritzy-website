@@ -1,9 +1,9 @@
 import CATEGORIES_ACTION_TYPES from "./category.types";
-const { SET_CATEGORIES_MAP } = CATEGORIES_ACTION_TYPES;
+const { SET_CATEGORIES } = CATEGORIES_ACTION_TYPES;
 
 // Initial State for Reducer:
 const CATEGORIES_INITIAL_STATE = {
-  categoriesMap: {},
+  categories: [],
 };
 
 export const categoriesReducer = (
@@ -13,10 +13,10 @@ export const categoriesReducer = (
   const { type, payload } = action;
 
   switch (type) {
-    case SET_CATEGORIES_MAP:
+    case SET_CATEGORIES:
       return {
         ...state,
-        categoriesMap: payload,
+        categories: payload,
       };
     default:
       return state;
