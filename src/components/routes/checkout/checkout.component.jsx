@@ -1,9 +1,12 @@
-// React:
-import { useContext } from "react";
+// Redux
+import { useSelector } from "react-redux";
+// Selector:
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../../store/cart/cart.selector";
 // Component:
 import CheckoutItem from "../../checkout-item/checkout-item.component";
-// Contexts:
-import { CartContext } from "../../../contexts/cart.context";
 // Styles:
 import {
   CheckoutContainer,
@@ -11,12 +14,14 @@ import {
   HeaderBlock,
   Total,
 } from "./checkout.styles";
+
 // Constants:
 import { PRODUCT_HEADERS } from "../../../utils/constants/constants";
 const { PRODUCT, DESCRIPTION, QUANTITY, PRICE, REMOVE } = PRODUCT_HEADERS;
 
 const Checkout = () => {
-  const { cartItems, cartTotal } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
 
   return (
     <CheckoutContainer>
