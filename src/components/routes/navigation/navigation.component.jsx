@@ -1,12 +1,8 @@
 // React
-import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 
 // Redux
 import { useSelector } from "react-redux";
-
-// Contexts
-import { CartContext } from "../../../contexts/cart.context";
 
 // Constants:
 import { SIGN_OUT } from "../../../utils/constants/constants";
@@ -27,10 +23,11 @@ import {
   NavLink,
 } from "./navigation.styles.js";
 import { selectCurrentUser } from "../../../store/user/user.selector";
-
+import { selectIsCartOpen } from "../../../store/cart/cart.selector";
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const { isCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
+
   return (
     <>
       <NavigationContainer>
